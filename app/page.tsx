@@ -29,7 +29,7 @@ const PROFILE = {
   photo: "/profile.jpg", // public/profile.jpg ফাইলটা আপলোড করুন
   cv: "/cv.pdf", // public/cv.pdf ফাইলটা আপলোড করুন
   intro:
-    "I build and ship real web products with React, Next.js, TypeScript and Supabase, and I grow them with technical SEO. My main project is Bizvely, a bilingual toolbox of 40+ free business tools that I designed, built and launched myself, using AI-assisted development.",
+    "I build and ship real web products with React, Next.js, TypeScript, Node.js/Express, Supabase and MongoDB, and I grow them with technical SEO. My main project is Bizvely, a bilingual toolbox of 40+ free business tools that I designed, built and launched myself, using AI-assisted development.",
 };
 
 const LINKS = {
@@ -57,59 +57,76 @@ type Project = {
   name: string;
   summary: string;
   tech: string[];
-  href: string;
-  label: string;
+  links: { href: string; label: string }[];
 };
 
 const OTHER_PROJECTS: Project[] = [
+  {
+    name: "Doctor Tracker",
+    summary:
+      "A secure admin portal to manage doctors and patients, with cookie-based JWT login, indexed search, filters, pagination and an analytics dashboard. A separate Next.js client talks to an Express and MongoDB REST API. Login is required, so I can share a demo account on request.",
+    tech: ["Next.js", "TypeScript", "Express", "MongoDB", "Render", "Cloudflare Pages"],
+    links: [
+      { href: "https://doctortracker.bizvely.com", label: "doctortracker.bizvely.com" },
+      { href: "https://github.com/Bizvely/doctor-tracker-frontend", label: "Frontend code" },
+      { href: "https://github.com/Bizvely/doctor-tracker-backend", label: "Backend code" },
+    ],
+  },
   {
     name: "HomeCare Job BD",
     summary:
       "A healthcare job marketplace that connects caregivers, agencies and patients across Bangladesh, with role-based access, document upload and verification badges, and an emergency blood-donor matching feature.",
     tech: ["Next.js", "TypeScript", "Supabase"],
-    href: "https://homecarejobbd.com",
-    label: "homecarejobbd.com",
+    links: [{ href: "https://homecarejobbd.com", label: "homecarejobbd.com" }],
   },
   {
     name: "Nowshin Fashion House",
     summary:
       "An e-commerce and multi-vendor marketplace with a full product catalogue, category filters, cart, vendor dashboards and admin tools, delivered through Cloudflare and Cloudinary.",
     tech: ["React", "TypeScript", "Cloudflare", "Cloudinary"],
-    href: "https://nowshinfashionhouse.com",
-    label: "nowshinfashionhouse.com",
+    links: [{ href: "https://nowshinfashionhouse.com", label: "nowshinfashionhouse.com" }],
   },
 ];
 
 const EXPERIENCE = [
   {
-    role: "Founder & Developer",
+    role: "Founder & Growth Operations Lead",
     org: "Bizvely",
-    place: "Barishal, Bangladesh",
+    place: "Barishal, Bangladesh (Remote)",
     period: "Present",
     points: [
-      "Design, build and grow bizvely.com end to end: product, development, technical SEO and content.",
-      "Ship new tools, fix issues from user feedback, and track search performance with Google Search Console and Bing Webmaster Tools.",
+      "Independently designed, built, launched and scaled bizvely.com, a bilingual (Bangla / English) SaaS platform with 40+ free business tools and utilities, built on React, TypeScript, Supabase and Cloudflare.",
+      "Optimised technical SEO and performance: PageSpeed Insights Performance 98 (mobile) and 99 (desktop), SEO 100 and Best Practices 100 (Nov 2026).",
+    ],
+  },
+  {
+    role: "Founder & Lead Developer",
+    org: "Insaf Web Solution",
+    place: "Dhaka, Bangladesh",
+    period: "2024 – 2025",
+    points: [
+      "Led agency operations delivering end-to-end custom websites, e-commerce web applications and web-to-app conversions for small and medium businesses.",
+      "Set up and managed cloud infrastructure: Cloudflare DNS and Email Routing, plus Vercel and Cloudflare deployments.",
     ],
   },
   {
     role: "Full-Stack Web Developer & Digital Marketer",
-    org: "Sara Technical Institute",
-    place: "Dhaka, Bangladesh",
-    period: "Mar 2026 – Oct 2026",
+    org: "Sara Technical Institute & Expert Care Academy",
+    place: "Medical sector, Dhaka",
+    period: "nov 2025",
     points: [
-      "Developed, maintained and optimised the institute's official web platform for performance, responsiveness and a smooth user experience.",
-      "Built and integrated custom AI chatbots to automate student enquiries, course guidance and admission support.",
-      "Carried out technical and on-page SEO to improve search visibility and bring in organic student traffic.",
+      "Developed and optimised official web platforms for medical training and healthcare services: expertcareacademy.com and betterlifehomecareservice.com.",
+      "Integrated AI-powered chatbots to automate student and patient enquiries, and applied technical SEO to grow organic reach.",
     ],
   },
   {
-    role: "Freelance Web Developer",
-    org: "Client projects",
+    role: "Full-Stack Developer (Client Projects & Marketplaces)",
+    org: "Service Share BD & others",
     place: "Remote",
-    period: "",
+    period: "Completed Oct 2026",
     points: [
-      "Delivered websites and business workflows for e-commerce, real estate and healthcare clients.",
-      "Set up ad campaigns and automated messaging flows for client onboarding.",
+      "Engineered Service Share BD (servicesharebd.vercel.app), a multi-vendor SaaS and service marketplace with dynamic listings and secure user flows.",
+      "Delivered production-ready e-commerce platforms, including Nowshin Fashion House and HomeCare Job BD.",
     ],
   },
 ];
@@ -121,7 +138,16 @@ const SKILLS = [
   },
   {
     title: "Backend & data",
-    items: ["Supabase (Postgres, Auth, RLS, Edge Functions)", "Node.js", "REST APIs", "Python"],
+    items: [
+      "Supabase (Postgres, Auth, RLS, Edge Functions)",
+      "Node.js",
+      "Express",
+      "MongoDB (Mongoose)",
+      "REST APIs",
+      "JWT cookie authentication",
+      "Zod validation",
+      "Python",
+    ],
   },
   {
     title: "SEO & growth",
@@ -135,7 +161,16 @@ const SKILLS = [
   },
   {
     title: "Tools & delivery",
-    items: ["GitHub", "Cloudflare Pages", "Vercel", "Cloudinary", "AI-assisted development", "Prompt engineering"],
+    items: [
+      "GitHub",
+      "Cloudflare (Pages, DNS, Email Routing)",
+      "Vercel",
+      "Render",
+      "MongoDB Atlas",
+      "Cloudinary",
+      "AI-assisted development",
+      "Prompt engineering",
+    ],
   },
 ];
 
@@ -237,7 +272,7 @@ export default function Home() {
                 <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-70" />
                 <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-emerald-400" />
               </span>
-              Open to remote roles
+              Open to remote and on-site roles
             </p>
 
             <h1 className="mt-6 text-4xl font-black leading-[1.1] tracking-tight text-white sm:text-6xl">
@@ -379,7 +414,7 @@ export default function Home() {
             </p>
           </article>
 
-          <div className="mt-6 grid gap-5 md:grid-cols-2">
+          <div className="mt-6 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
             {OTHER_PROJECTS.map((p) => (
               <article key={p.name} className="flex flex-col rounded-2xl border border-white/10 bg-white/[0.04] p-6">
                 <h3 className="text-xl font-semibold text-white">{p.name}</h3>
@@ -394,15 +429,20 @@ export default function Home() {
                     </span>
                   ))}
                 </p>
-                <a
-                  href={p.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="mt-5 inline-flex min-h-[40px] items-center gap-1.5 text-sm font-semibold text-cyan-300 underline-offset-4 hover:underline"
-                >
-                  {p.label}
-                  <ArrowUpRight className="h-4 w-4" />
-                </a>
+                <p className="mt-5 flex flex-wrap gap-x-5 gap-y-1">
+                  {p.links.map((link) => (
+                    <a
+                      key={link.href}
+                      href={link.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex min-h-[40px] items-center gap-1.5 text-sm font-semibold text-cyan-300 underline-offset-4 hover:underline"
+                    >
+                      {link.label}
+                      <ArrowUpRight className="h-4 w-4" />
+                    </a>
+                  ))}
+                </p>
               </article>
             ))}
           </div>
@@ -490,7 +530,7 @@ export default function Home() {
         <Section id="contact" eyebrow="Contact" title="Let's work together">
           <div className="rounded-3xl border border-white/10 bg-gradient-to-br from-violet-600/20 via-white/[0.03] to-cyan-500/10 p-6 sm:p-10">
             <p className="max-w-2xl text-lg leading-8 text-slate-200">
-              I am looking for a remote role where I can build and grow web products. If you have an opening, or want
+              I am looking for a remote or on-site role where I can build and grow web products. If you have an opening, or want
               help with a website or SEO, send me a message and I will reply soon.
             </p>
             <div className="mt-7 flex flex-wrap gap-3">
