@@ -1,3 +1,4 @@
+
 import Image from "next/image";
 import {
   ArrowDown, ArrowUpRight, BadgeCheck, BriefcaseBusiness, Code2, ExternalLink,
@@ -174,7 +175,14 @@ export default function Home() {
       <section className="section projects-section" id="projects">
         <SectionHeading kicker="Selected projects" title="A few things I’ve built." text="A mix of SaaS products, healthcare platforms, business websites and web applications."/>
         <article className="featured-project">
-          <div className="featured-image"><Image src="/projects/bizvely-home.png" alt="Bizvely homepage preview" fill sizes="(max-width: 800px) 100vw, 55vw"/></div>
+          <div className="featured-image">
+            <Image
+              src="/bizvely-home.png"
+              alt="Bizvely homepage preview"
+              fill
+              sizes="(max-width: 800px) 100vw, 55vw"
+            />
+          </div>
           <div className="featured-info">
             <div className="featured-label"><span/> FEATURED · MY SAAS PRODUCT</div>
             <h3>Bizvely</h3><p className="project-category">Bilingual business tools platform</p>
@@ -192,8 +200,10 @@ export default function Home() {
                 <p className="project-category">{project.category}</p><h3>{project.name}</h3><p className="project-description">{project.description}</p>
                 <div className="feature-list">{project.features.map(f=><span key={f}><BadgeCheck size={14}/>{f}</span>)}</div>
                 <div className="tags">{project.stack.map(t=><span key={t}>{t}</span>)}</div>
-                <div className="project-links"><a className="text-link" href={project.url} target="_blank" rel="noreferrer">View live site <ArrowUpRight size={15}/></a>
-                {project.repos?.map(([label,url])=><a className="repo-link" key={url} href={url} target="_blank" rel="noreferrer"><Github size={14}/>{label}</a>)}</div>
+                <div className="project-links">
+                  <a className="text-link" href={project.url} target="_blank" rel="noreferrer">View live site <ArrowUpRight size={15}/></a>
+                  {project.repos?.map(([label,url])=><a className="repo-link" key={url} href={url} target="_blank" rel="noreferrer"><Github size={14}/>{label}</a>)}
+                </div>
               </div>
             </article>
           ))}
