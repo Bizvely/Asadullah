@@ -1,3 +1,4 @@
+
 "use client";
 
 import { useEffect, useRef, useState } from "react";
@@ -8,14 +9,19 @@ type AvatarProps = {
   initials: string;
 };
 
-// ছবি (public/profile.jpg) না থাকলে নিজে থেকে নামের আদ্যক্ষর দেখাবে, পেজ ভাঙবে না
-export default function Avatar({ src, alt, initials }: AvatarProps) {
+export default function Avatar({
+  src,
+  alt,
+  initials,
+}: AvatarProps) {
   const [failed, setFailed] = useState(false);
   const imgRef = useRef<HTMLImageElement>(null);
 
   useEffect(() => {
     const img = imgRef.current;
-    if (img && img.complete && img.naturalWidth === 0) setFailed(true);
+    if (img && img.complete && img.naturalWidth === 0) {
+      setFailed(true);
+    }
   }, []);
 
   if (failed) {
@@ -31,7 +37,6 @@ export default function Avatar({ src, alt, initials }: AvatarProps) {
   }
 
   return (
-    // eslint-disable-next-line @next/next/no-img-element
     <img
       ref={imgRef}
       src={src}
